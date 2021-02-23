@@ -36,14 +36,14 @@ public class AlunoDao {
 
         if (aluno != null) {
             try {
-                Connection conn = Aplicacao.abreConexao();
+                Connection conn = AplicacaoDao.abreConexao();
                 PreparedStatement st = conn.prepareStatement(insert);
                 st.setString(1, aluno.getNome());
                 st.setString(2, aluno.getMatricula());
                 st.setString(3, aluno.getDocRg());
                 st.setString(4, aluno.getDocCpf());
                 st.execute();
-                Aplicacao.fechaConexao(conn);
+                AplicacaoDao.fechaConexao(conn);
                 retorno = true;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -64,7 +64,7 @@ public class AlunoDao {
 
         if ((aluno != null) || (aluno.getCodAluno() == -1)) {
             try {
-                Connection conn = Aplicacao.abreConexao();
+                Connection conn = AplicacaoDao.abreConexao();
                 PreparedStatement st = conn.prepareStatement(update);
 
                 st.setString(1, aluno.getNome());
@@ -74,7 +74,7 @@ public class AlunoDao {
                 st.setInt(5, aluno.getCodAluno());
 
                 st.execute();
-                Aplicacao.fechaConexao(conn);
+                AplicacaoDao.fechaConexao(conn);
                 retorno = true;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -96,7 +96,7 @@ public class AlunoDao {
 
         if (aluno != null) {
             PreparedStatement st;
-            Connection conn = Aplicacao.abreConexao();
+            Connection conn = AplicacaoDao.abreConexao();
 
             try {
                 if (aluno.getCodAluno() != -1) {
@@ -116,7 +116,7 @@ public class AlunoDao {
                 }
 
                 st.execute();
-                Aplicacao.fechaConexao(conn);
+                AplicacaoDao.fechaConexao(conn);
                 System.out.println("fim");
                 retorno = true;
             } catch (Exception e) {
@@ -135,7 +135,7 @@ public class AlunoDao {
      */
     public List<Aluno> listar() throws SQLException {
         ArrayList<Aluno> alunos = new ArrayList<>();
-        Connection conn = Aplicacao.abreConexao();
+        Connection conn = AplicacaoDao.abreConexao();
         PreparedStatement st = conn.prepareStatement(qryTodosAlunos);
         ResultSet rs = st.executeQuery();
 
@@ -149,7 +149,7 @@ public class AlunoDao {
             alunos.add(aluno);
         }
 
-        Aplicacao.fechaConexao(conn);
+        AplicacaoDao.fechaConexao(conn);
         return alunos;
     }
 
@@ -159,7 +159,7 @@ public class AlunoDao {
     public List<Aluno> listarPorNome(String nome) throws SQLException {
 
         ArrayList<Aluno> alunos = new ArrayList<>();
-        Connection conn = Aplicacao.abreConexao();
+        Connection conn = AplicacaoDao.abreConexao();
         PreparedStatement st = conn.prepareStatement(qryAlunoPorNome);
         st.setString(1, nome);
         ResultSet rs = st.executeQuery();
@@ -174,7 +174,7 @@ public class AlunoDao {
             alunos.add(aluno);
         }
 
-        Aplicacao.fechaConexao(conn);
+        AplicacaoDao.fechaConexao(conn);
         return alunos;
     }
 
@@ -184,7 +184,7 @@ public class AlunoDao {
     public List<Aluno> listarPorMatricula(String matricula) throws SQLException {
 
         ArrayList<Aluno> alunos = new ArrayList<>();
-        Connection conn = Aplicacao.abreConexao();
+        Connection conn = AplicacaoDao.abreConexao();
         PreparedStatement st = conn.prepareStatement(qryAlunoPorMatricula);
         st.setString(1, matricula);
         ResultSet rs = st.executeQuery();
@@ -201,7 +201,7 @@ public class AlunoDao {
             alunos.add(aluno);
         }
 
-        Aplicacao.fechaConexao(conn);
+        AplicacaoDao.fechaConexao(conn);
         return alunos;
     }
 }

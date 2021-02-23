@@ -1,15 +1,19 @@
 package vrteste.controller;
 
+import java.sql.SQLException;
+import vrteste.DAO.AplicacaoDao;
+
 /**
  * @author guilh
  */
 public class AplicacaoController {
     
     public boolean inicializacao(){
-        /*
-        Fazer o Check se o Banco de dados está criado
-        */
-        return true;
+        return AplicacaoDao.existeBanco();
+    }
+    
+    public void criarBanco() throws SQLException{
+        AplicacaoDao.criaBanco();
     }
     
 }

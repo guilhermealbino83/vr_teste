@@ -20,8 +20,15 @@ public class FrmMenu extends javax.swing.JFrame {
      */
     public FrmMenu() {
         initComponents();
-        
         aplicacao = new AplicacaoController();
+
+        if (!aplicacao.inicializacao()) {
+            jMenuBar1.setVisible(false);
+            FrmCriacaoBanco frmCriacaoBanco = new FrmCriacaoBanco();
+            jdpPrincipal.add(frmCriacaoBanco);
+            frmCriacaoBanco.setVisible(true);
+        }
+
     }
 
     /**
@@ -129,8 +136,7 @@ public class FrmMenu extends javax.swing.JFrame {
                 new FrmMenu().setVisible(true);
             }
         });
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
